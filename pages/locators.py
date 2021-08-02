@@ -24,3 +24,4 @@ class ProductPageLocators:
     TITLE_OF_BOOK_BEFORE = (By.CSS_SELECTOR, 'div.col-sm-6.product_main > h1')
     PRICE_OF_BOOK_AFTER = (By.XPATH, '//div//p[@class="price_color"]')
     TITLE_OF_BOOK_AFTER = (By.XPATH, '//div[1]/div[1]/strong')
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "div.alert-success")
