@@ -25,3 +25,8 @@ class ProductPageLocators:
     PRICE_OF_BOOK_AFTER = (By.XPATH, '//div//p[@class="price_color"]')
     TITLE_OF_BOOK_AFTER = (By.XPATH, '//div[1]/div[1]/strong')
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, "div.alert-success")
+
+
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")

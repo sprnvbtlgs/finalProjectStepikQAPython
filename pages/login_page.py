@@ -1,5 +1,5 @@
 from .base_page import BasePage
-from .locators import LoginPageLocators
+from .locators import LoginPageLocators, BasePageLocators
 
 
 class LoginPage(BasePage):
@@ -21,3 +21,11 @@ class LoginPage(BasePage):
         assert self.is_element_present(*LoginPageLocators.INPUT_PASSWORD_UP), "INPUT_PASSWORD_UP not found"
         assert self.is_element_present(*LoginPageLocators.INPUT_CONFIRM_PASSWORD_UP), "INPUT_CONFIRM_PASSWORD_UP not found"
         assert self.is_element_present(*LoginPageLocators.SUBMIT_UP), "SUBMIT_UP not found"
+
+    def go_to_login_page(self):
+        login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        login_link.click()
+        assert 'login' in self.browser.current_url, "Link is invalid"
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
