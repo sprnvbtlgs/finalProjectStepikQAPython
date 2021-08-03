@@ -1,3 +1,6 @@
+import pytest
+
+from .pages.basket_page import BasketPage
 from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
 
@@ -34,6 +37,15 @@ def test_registration_form(browser):
     page.go_to_login_page()
     page.should_be_login_url()
     page.should_be_register_form()
+
+
+@pytest.mark.new
+def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/"
+    page = BasketPage(browser, link)
+    page.open()
+    page.open_basket_page()
+    page.should_not_be_goods_in_basket()
 
 
 '''
