@@ -1,5 +1,6 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators, BasePageLocators
+import faker
 
 
 class LoginPage(BasePage):
@@ -19,8 +20,23 @@ class LoginPage(BasePage):
     def should_be_register_form(self):
         assert self.is_element_present(*LoginPageLocators.INPUT_EMAIL_UP), "INPUT_EMAIL_UP not found"
         assert self.is_element_present(*LoginPageLocators.INPUT_PASSWORD_UP), "INPUT_PASSWORD_UP not found"
-        assert self.is_element_present(*LoginPageLocators.INPUT_CONFIRM_PASSWORD_UP), "INPUT_CONFIRM_PASSWORD_UP not found"
+        assert self.is_element_present(*LoginPageLocators.INPUT_CONFIRM_PASSWORD_UP), "INPUT_CONFIRM_PASSWORD_UP not " \
+                                                                                      "found "
         assert self.is_element_present(*LoginPageLocators.SUBMIT_UP), "SUBMIT_UP not found"
+
+    def register_new_user(self):
+        f = faker.Faker()
+        email = f.email()
+        password = f.password()
+
+        email_field = self.browser.find_element(*LoginPageLocators.INPUT_EMAIL_UP)
+        email_field.send_keys(email)
+        password_field = self.browser.find_element(*LoginPageLocators.INPUT_PASSWORD_UP)
+        password_field.send_keys(password)
+        password_confirm_field = self.browser.find_element(*LoginPageLocators.INPUT_CONFIRM_PASSWORD_UP)
+        password_confirm_field.send_keys(password)
+        confirm_button = self.browser.find_element(*LoginPageLocators.SUBMIT_UP).click()
+
 
     def go_to_login_page(self):
         login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
@@ -29,3 +45,4 @@ class LoginPage(BasePage):
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
